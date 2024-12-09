@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuki - Status</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Stelle sicher, dass das Favicon im gleichen Ordner wie deine HTML-Datei liegt -->
+    <style>
+        /* Grundlegendes Layout und Farben */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('background.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: #eaeaea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 1.5s ease-out;
+            max-width: 800px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .status-card {
+            background-color: rgba(31, 31, 31, 0.9); /* Transparente Karte für den edlen Look */
+            border-radius: 20px;
+            padding: 40px 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px); /* Unscharfer Hintergrund für modernen Look */
+            animation: slideIn 1s ease-out;
+        }
+
+        .nexus-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Macht das Logo rund */
+            margin-bottom: 20px;
+            animation: zoomIn 1s ease-in-out;
+            object-fit: cover; /* Erhält das richtige Seitenverhältnis */
+            transition: transform 0.3s ease;
+            display: block; /* Macht das Bild block-level */
+            margin-left: auto; /* Zentriert das Bild horizontal */
+            margin-right: auto; /* Zentriert das Bild horizontal */
+        }
+
+        .nexus-logo:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #f39c12;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .status-info p {
+            font-size: 1.6rem;
+            margin: 10px 0;
+            color: #eaeaea;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        #server-status {
+            font-weight: bold;
+            color: #e74c3c; /* Rot für "In Arbeit" */
+            font-size: 1.7rem;
+        }
+
+        #player-count {
+            font-weight: bold;
+            color: #2ecc71; /* Grün für Spieleranzahl */
+        }
+
+        /* Animationen */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .status-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .status-card {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .status-info p {
+                font-size: 1.4rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status-card">
+            <img src="yuki.png" alt="Nexus Logo" class="nexus-logo">
+            <h1>Yuki Server Status</h1>
+            <div class="status">
+                <div class="status-info">
+                    <p>Status: <span id="server-status">In Arbeit...</span></p>
+                    <p>Aktuelle Spieler: <span id="player-count">Lädt...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funktion, die den Serverstatus anzeigt
+        function fetchServerStatus() {
+            // In Arbeit - Status anzeigen
+            setTimeout(() => {
+                document.getElementById('server-status').textContent = 'In Arbeit...';
+                document.getElementById('server-status').style.color = '#e74c3c';  // Rot für "In Arbeit"
+                document.getElementById('player-count').textContent = 'Noch keine Daten';  // Kein Spieler angezeigt
+            }, 2000);  // Simulierte Verzögerung (2 Sekunden)
+        }
+
+        // Initialer Abruf beim Laden der Seite
+        fetchServerStatus();
+    </script>
+</body>
+</html>
